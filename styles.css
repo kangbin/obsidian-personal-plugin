@@ -1,8 +1,21 @@
-/*
+.personal-icon {
+  display: flex;
+  align-self: center;
+  margin-right: 4px;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.personal-icon[data-icon="folder-closed"] {
+  display: none;
+}
 
-If your plugin does not need CSS, delete this file.
+.tree-item.nav-folder.is-collapsed
+  > .tree-item-self
+  > .personal-icon[data-icon="folder-open"] {
+  display: none;
+}
 
-*/
+.tree-item.nav-folder.is-collapsed
+  > .tree-item-self
+  > .personal-icon[data-icon="folder-closed"] {
+  display: flex;
+}
