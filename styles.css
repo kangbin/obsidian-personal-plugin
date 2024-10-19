@@ -19,3 +19,22 @@
   > .personal-icon[data-icon="folder-closed"] {
   display: flex;
 }
+
+/* ─────────────────────────────────────────────────── */
+/* Main Theme Styling */
+/* ─────────────────────────────────────────────────── */
+
+body {
+  --strong-color: var(--text-accent);
+}
+
+/* body.theme-dark {
+  --strong-color: var(--text-accent);
+} */
+
+/* Bold font */
+body:not(.default-font-color) strong,
+body:not(.default-font-color) span:not(.cm-highlight).cm-strong {
+  opacity: 0.8;
+  color: var(--strong-color);
+}

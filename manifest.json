@@ -1,11 +1,11 @@
 {
-  "id": "obsidian-kangbin-personal-plugin",
-  "name": "康斌私人插件",
-  "version": "1.0.0",
-  "minAppVersion": "0.15.0",
-  "description": "专门满足康斌个人私有化需求的插件",
-  "author": "kangbin",
-  "authorUrl": "https://github.com/kangbin",
-  "fundingUrl": "https://obsidian.md/pricing",
-  "isDesktopOnly": false
+	"id": "obsidian-kangbin-personal-plugin",
+	"name": "康斌私人插件",
+	"version": "1.0.1",
+	"minAppVersion": "0.15.0",
+	"description": "专门满足康斌个人私有化需求的插件",
+	"author": "kangbin",
+	"authorUrl": "https://github.com/kangbin",
+	"fundingUrl": "https://obsidian.md/pricing",
+	"isDesktopOnly": false
 }
