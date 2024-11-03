@@ -4,17 +4,17 @@ import {
   type Menu,
   type PluginManifest,
   Plugin,
-  moment,
 } from "obsidian";
 import { info } from "../../utils/logger";
+import { separator, submenuTexts } from "./config";
 
-export class DatePlugin extends Plugin {
+export class CalloutPlugin extends Plugin {
   constructor(app: App, manifest: PluginManifest) {
     super(app, manifest);
   }
 
   async onload() {
-    info(`DatePlugin onload`);
+    info(`CalloutPlugin onload`);
 
     const {
       app: { workspace },
@@ -24,7 +24,7 @@ export class DatePlugin extends Plugin {
   }
 
   onunload() {
-    info(`DatePlugin onunload`);
+    info(`CalloutPlugin onunload`);
 
     const {
       app: { workspace },
@@ -35,7 +35,7 @@ export class DatePlugin extends Plugin {
 
   private handleEditorMenu = (menu: Menu, editor: Editor) => {
     menu.addItem((item) => {
-      item.setTitle("插入时间");
+      item.setTitle("插入高亮块");
 
       // https://github.com/mProjectsCode/obsidian-meta-bind-plugin/blob/4b16a75fb63dfdb34e3ccf2756a324a84dd8fd85/packages/obsidian/src/EditorMenu.ts#L17-L30
       // https://forum.obsidian.md/t/make-setsubmenu-public-api/59175/2
@@ -44,16 +44,15 @@ export class DatePlugin extends Plugin {
   };
 
   private generateSubmenu(editor: Editor, submenu: Menu) {
-    const submenuTexts: Array<string> = [
-      moment().format("YYYY-MM-DD"),
-      moment().format("## MM-DD ddd"),
-    ];
-
     submenuTexts.forEach((title) => {
-      submenu.addItem((item) => {
-        item.setTitle(title);
-        item.onClick(() => this.insertText(editor, title));
-      });
+      if (title === separator) {
+        submenu.addSeparator();
+      } else {
+        submenu.addItem((item) => {
+          item.setTitle(title);
+          item.onClick(() => this.insertText(editor, title2content(title)));
+        });
+      }
     });
   }
 
@@ -62,7 +61,11 @@ export class DatePlugin extends Plugin {
     editor.replaceRange(text, cursor);
     editor.setCursor({
       line: cursor.line,
-      ch: cursor.ch + text.length,
+      ch: cursor.ch + text.length - 6,
     });
   }
+}
+
+function title2content(title: string) {
+  return `> [!${title}] ${title}\n> \n> `;
 }
